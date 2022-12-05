@@ -1,0 +1,22 @@
+running egg_info
+writing ../../build/exercises/exercises.egg-info/PKG-INFO
+writing dependency_links to ../../build/exercises/exercises.egg-info/dependency_links.txt
+writing entry points to ../../build/exercises/exercises.egg-info/entry_points.txt
+writing requirements to ../../build/exercises/exercises.egg-info/requires.txt
+writing top-level names to ../../build/exercises/exercises.egg-info/top_level.txt
+reading manifest file '../../build/exercises/exercises.egg-info/SOURCES.txt'
+writing manifest file '../../build/exercises/exercises.egg-info/SOURCES.txt'
+running build
+running build_py
+copying exercises/ex1_solution.py -> /workspaces/ros2-python-course/build/exercises/build/lib/exercises
+running install
+running install_lib
+copying /workspaces/ros2-python-course/build/exercises/build/lib/exercises/ex1_solution.py -> /workspaces/ros2-python-course/install/exercises/lib/python3.10/site-packages/exercises
+byte-compiling /workspaces/ros2-python-course/install/exercises/lib/python3.10/site-packages/exercises/ex1_solution.py to ex1_solution.cpython-310.pyc
+running install_data
+running install_egg_info
+removing '/workspaces/ros2-python-course/install/exercises/lib/python3.10/site-packages/exercises-0.0.0-py3.10.egg-info' (and everything under it)
+Copying ../../build/exercises/exercises.egg-info to /workspaces/ros2-python-course/install/exercises/lib/python3.10/site-packages/exercises-0.0.0-py3.10.egg-info
+running install_scripts
+Installing ex1 = exercises.ex1:mainex1_solution script to /workspaces/ros2-python-course/install/exercises/lib/exercises
+writing list of installed files to '/workspaces/ros2-python-course/build/exercises/install.log'

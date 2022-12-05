@@ -1,3 +1,17 @@
+# Copyright 2016 Open Source Robotics Foundation, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 import rclpy
 import math
 from rclpy.node import Node
@@ -41,7 +55,12 @@ class MoveTurtle(Node):
         # Create here a subscription to /turtle1/pose 
         # Create a callback, turtle1_pose_update 
         # In it, update the pose of the turtle you want to catch (turtle1)
-        
+        self.subscription_1 = self.create_subscription(
+            Pose,
+            '/turtle1/pose',
+            self.turtle1_pose_update,
+            10)
+        self.subscription_1  # prevent unused variable warning
         #
         #--> end of your code 
         ################################################
@@ -63,7 +82,11 @@ class MoveTurtle(Node):
         # Create a publisher to publish to /turtle2/cmd_vel
         # Call it publisher_predator 
         # You will use it later in the game to move your predator turtle
-        pass 
+
+        self.publisher_predator = self.create_publisher(
+            Twist, 
+            '/turtle2/cmd_vel', 
+            10)
         #
         #--> end of your code 
         ################################################
@@ -104,7 +127,7 @@ class MoveTurtle(Node):
         ###############################################
         # Here update the location of turtle 1
         # 2. --> your code here
-        pass
+        self.turtle1_pose = data
         # --> end of your code 
         ################################################
 
@@ -153,8 +176,49 @@ class MoveTurtle(Node):
         # 4. --> your code here
         # You can print the target location
         # self.get_logger().info('target location: x="%s" y="%s"' % (self.turtle1_pose.x,self.turtle1_pose.y))      
-        # use here your publisher publisher_predator to move your turtle
-        pass
+       
+        """Moves the turtle to the goal."""
+        if self.euclidean_distance(self.turtle1_pose,self.turtle2_pose) >= 0.001:
+            
+            goal_pose = self.turtle1_pose
+            distance_tolerance = 0
+            # Get the input from the user.
+            goal_pose.x = self.turtle1_pose.x
+            goal_pose.y = self.turtle1_pose.y
+   
+            vel_msg = Twist()
+
+            # Porportional controller.
+            # https://en.wikipedia.org/wiki/Proportional_control
+
+            # Linear velocity in the x-axis.
+            vel_msg.linear.x = self.distance(self.turtle2_pose,goal_pose) * 1.5
+            vel_msg.linear.y = 0.0
+            vel_msg.linear.z = 0.0
+
+            # Angular velocity in the z-axis.
+            vel_msg.angular.x = 0.0
+            vel_msg.angular.y = 0.0
+            vel_msg.angular.z = self.angular(self.turtle2_pose,goal_pose) * 6
+
+            # Publishing our vel_msg
+            self.publisher_predator.publish(vel_msg)
+        else:
+
+            vel_msg = Twist()
+            # Linear velocity in the x-axis.
+            vel_msg.linear.x = 0.0
+            vel_msg.linear.y = 0.0
+            vel_msg.linear.z = 0.0
+
+            # Angular velocity in the z-axis.
+            vel_msg.angular.x = 0.0
+            vel_msg.angular.y = 0.0
+            vel_msg.angular.z = 0.0
+
+            # Publishing our vel_msg
+            self.publisher_predator.publish(vel_msg)   
+        
         # --> end of your code 
         ################################################
 

@@ -20,7 +20,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [  
-            'ex1 = exercises.ex1:main'
+            'ex1 = exercises.ex1:main',
+            'ex1_solution = exercises.ex1_solution:main'
         ],
     },
 )

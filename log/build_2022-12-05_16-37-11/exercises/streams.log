@@ -1,0 +1,26 @@
+[0.580s] Invoking command in '/workspaces/ros2-python-course/src/exercises': PYTHONPATH=/workspaces/ros2-python-course/build/exercises/prefix_override:/workspaces/ros2-python-course/install/exercises/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/exercises build --build-base /workspaces/ros2-python-course/build/exercises/build install --record /workspaces/ros2-python-course/build/exercises/install.log --single-version-externally-managed
+[0.848s] running egg_info
+[0.849s] writing ../../build/exercises/exercises.egg-info/PKG-INFO
+[0.849s] writing dependency_links to ../../build/exercises/exercises.egg-info/dependency_links.txt
+[0.849s] writing entry points to ../../build/exercises/exercises.egg-info/entry_points.txt
+[0.849s] writing requirements to ../../build/exercises/exercises.egg-info/requires.txt
+[0.849s] writing top-level names to ../../build/exercises/exercises.egg-info/top_level.txt
+[0.850s] reading manifest file '../../build/exercises/exercises.egg-info/SOURCES.txt'
+[0.851s] writing manifest file '../../build/exercises/exercises.egg-info/SOURCES.txt'
+[0.851s] running build
+[0.851s] running build_py
+[0.851s] copying exercises/ex1.py -> /workspaces/ros2-python-course/build/exercises/build/lib/exercises
+[0.852s] running install
+[0.852s] /usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[0.852s]   warnings.warn(
+[0.852s] running install_lib
+[0.852s] copying /workspaces/ros2-python-course/build/exercises/build/lib/exercises/ex1.py -> /workspaces/ros2-python-course/install/exercises/lib/python3.10/site-packages/exercises
+[0.853s] byte-compiling /workspaces/ros2-python-course/install/exercises/lib/python3.10/site-packages/exercises/ex1.py to ex1.cpython-310.pyc
+[0.854s] running install_data
+[0.854s] running install_egg_info
+[0.855s] removing '/workspaces/ros2-python-course/install/exercises/lib/python3.10/site-packages/exercises-0.0.0-py3.10.egg-info' (and everything under it)
+[0.856s] Copying ../../build/exercises/exercises.egg-info to /workspaces/ros2-python-course/install/exercises/lib/python3.10/site-packages/exercises-0.0.0-py3.10.egg-info
+[0.856s] running install_scripts
+[0.873s] Installing ex1 script to /workspaces/ros2-python-course/install/exercises/lib/exercises
+[0.873s] writing list of installed files to '/workspaces/ros2-python-course/build/exercises/install.log'
+[0.893s] Invoked command in '/workspaces/ros2-python-course/src/exercises' returned '0': PYTHONPATH=/workspaces/ros2-python-course/build/exercises/prefix_override:/workspaces/ros2-python-course/install/exercises/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/exercises build --build-base /workspaces/ros2-python-course/build/exercises/build install --record /workspaces/ros2-python-course/build/exercises/install.log --single-version-externally-managed
