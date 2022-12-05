@@ -1,0 +1,8 @@
+
+build/
+
+install/exercises/lib/python3.10/site-packages/exercises-0.0.0-py3.10.egg-info/
+
+install/
+
+log/
