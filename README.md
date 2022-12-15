@@ -24,6 +24,13 @@ code .
 ```
 When Visual Code launches, reopen the project in a container
 
+## Build inside the Docker 
+```
+git clone https://github.com/AriYakir/ros2-python-course.git
+cd ros2-python-course
+code . 
+```
+
 ## Slides 
 * Slides for the course are [here](https://docs.google.com/presentation/d/1ej2jbD_dZtZeUjqm661ospyhMSjJ90JMFWPBwGIxeEU/edit?usp=sharing)
 

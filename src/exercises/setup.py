@@ -21,7 +21,8 @@ setup(
     entry_points={
         'console_scripts': [  
             'ex1 = exercises.ex1:main',
-            'ex1_solution = exercises.ex1_solution:main'
+            'ex1_solution = exercises.ex1_solution:main',
+            'ex2 = exercises.ex2:main',
         ],
     },
 )

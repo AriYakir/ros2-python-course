@@ -26,14 +26,14 @@ class MoveTurtle(Node):
 
         # Spawning a second turtle (turtle2)
         # Here we connect to the service and wait for it to become available
-        self.cli1 = self.create_client(Kill, 'kill')
-        while not self.cli1.wait_for_service(timeout_sec=1.0):
+        self.cli_kill = self.create_client(Kill, 'kill')
+        while not self.cli_kill.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('service not available, waiting again...')
-        self.req1 = Kill.Request(name="turtle2")
-        self.cli2 = self.create_client(Spawn, 'spawn')
-        while not self.cli2.wait_for_service(timeout_sec=1.0):
+        self.cli_kill_req = Kill.Request(name="turtle2")
+        self.cli_spwan = self.create_client(Spawn, 'spawn')
+        while not self.cli_spwan.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('service not available, waiting again...')
-        self.req2 = Spawn.Request()
+        self.cli_spwan_req = Spawn.Request()
 
         
         ###############################################
@@ -79,7 +79,7 @@ class MoveTurtle(Node):
 
 
         # This is a function called periodically in which the game logic should be implemented
-        game_timer_period = 0.2     # seconds
+        game_timer_period = 0.1     # seconds
         self.game_counter = 0               # counter 
         self.game_timer = self.create_timer(game_timer_period, self.game)
         
@@ -88,23 +88,23 @@ class MoveTurtle(Node):
         self.game_monitor_timer = self.create_timer(game_monitor_timer_period, self.game_monitor)
 
     # Method for spawning a turtle
-    def kill_request(self):
+    def kill_request(self,name):
         print("killing your turtle!")
-        self.req1.name = "turtle2"
+        self.cli_kill_req.name = name
         
-        self.future = self.cli1.call_async(self.req1)
+        self.future = self.cli_kill.call_async(self.cli_kill_req)
         rclpy.spin_until_future_complete(self, self.future)
         return self.future.result()
 
 
     # Method for spawning a turtle
-    def spawn_request(self):
+    def spawn_request(self, name):
         print("Spawning your turtle!")
-        self.req2.name = "turtle2"
-        self.req2.x = random.uniform(0, 10.0)
-        self.req2.y = random.uniform(0, 10.0)
+        self.cli_spwan_req.name = name
+        self.cli_spwan_req.x = random.uniform(0, 10.0)
+        self.cli_spwan_req.y = random.uniform(0, 10.0)
 
-        self.future = self.cli2.call_async(self.req2)
+        self.future = self.cli_spwan.call_async(self.cli_spwan_req)
         rclpy.spin_until_future_complete(self, self.future)
         return self.future.result()
         
@@ -135,7 +135,7 @@ class MoveTurtle(Node):
         return self.steering_angle(from_pose,to_pose) - from_pose.theta
 
     
-    # The (directed) angle from vector1 to vector2
+    # The (directed) angle between two points
     def steering_angle(self, from_pose, to_pose):
         return math.atan2(to_pose.y - from_pose.y, to_pose.x - from_pose.x)
 
@@ -143,7 +143,6 @@ class MoveTurtle(Node):
 
     def degrees2radians(self, angle_in_degrees):
 	    return angle_in_degrees * ( math.pi / 180.0 )
-
 
     def game_monitor(self):
         if self.euclidean_distance(self.turtle1_pose,self.turtle2_pose) < 0.1:
@@ -216,10 +215,10 @@ def main(args=None):
     moveTurtle = MoveTurtle()
 
     # Spawn goal turtle
-    goal_turtle = moveTurtle.kill_request()
+    goal_turtle = moveTurtle.kill_request("turtle2")
 
     # Spawn goal turtle
-    goal_turtle = moveTurtle.spawn_request()
+    goal_turtle = moveTurtle.spawn_request("turtle2")
 
     rclpy.spin(moveTurtle)
 
