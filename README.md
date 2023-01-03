@@ -24,11 +24,11 @@ code .
 ```
 When Visual Code launches, reopen the project in a container
 
-## Build inside the Docker 
+## Build the examples inside the Docker 
+Before checking changes, remember to re-run 
 ```
-git clone https://github.com/AriYakir/ros2-python-course.git
-cd ros2-python-course
-code . 
+colcon build --packages-select exercises
+. install/setup.bash
 ```
 
 ## Slides 

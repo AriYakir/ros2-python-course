@@ -30,10 +30,10 @@ class MoveTurtle(Node):
         while not self.cli_kill.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('service not available, waiting again...')
         self.cli_kill_req = Kill.Request(name="turtle2")
-        self.cli_spwan = self.create_client(Spawn, 'spawn')
-        while not self.cli_spwan.wait_for_service(timeout_sec=1.0):
+        self.cli_spawn = self.create_client(Spawn, 'spawn')
+        while not self.cli_spawn.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('service not available, waiting again...')
-        self.cli_spwan_req = Spawn.Request()
+        self.cli_spawn_req = Spawn.Request()
 
         
         ###############################################
@@ -91,11 +91,11 @@ class MoveTurtle(Node):
     # Method for spawning a turtle
     def spawn_request(self, name):
         print("Spawning your turtle!")
-        self.cli_spwan_req.name = name
-        self.cli_spwan_req.x = random.uniform(0, 10.0)
-        self.cli_spwan_req.y = random.uniform(0, 10.0)
+        self.cli_spawn_req.name = name
+        self.cli_spawn_req.x = random.uniform(0, 10.0)
+        self.cli_spawn_req.y = random.uniform(0, 10.0)
 
-        self.future = self.cli_spwan.call_async(self.cli_spwan_req)
+        self.future = self.cli_spawn.call_async(self.cli_spawn_req)
         rclpy.spin_until_future_complete(self, self.future)
         return self.future.result()
         
