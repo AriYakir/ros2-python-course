@@ -1,4 +1,5 @@
-# ros2-python-course
+# ::ROS2 Humble Python Course 
+
 
 ## Work in progress notice
 
